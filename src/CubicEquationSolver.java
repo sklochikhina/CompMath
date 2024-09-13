@@ -14,19 +14,21 @@ public class CubicEquationSolver {
     private double fx1;
     private double fx2;
     
-    private ArrayList<Double> cubic_roots;
+    private final ArrayList<Double> cubic_roots;
     
     public CubicEquationSolver(double epsilon, double a, double b, double c) {
         this.epsilon = epsilon;
         this.a = a;
         this.b = b;
         this.c = c;
+        cubic_roots = new ArrayList<>();
     }
     
     private double dichotomyMethod(double a, double b) {
         double fa = f(a), fb = f(b);
-        double temp = (b - a) / 2;
-        double f_temp = f((b - a) / 2);
+        double temp = (b + a) / 2;
+        if (Math.abs(b - a) < epsilon) return temp;
+        double f_temp = f(temp);
         if (f_temp > 0) {
             if (fa > 0 && fb < 0) return dichotomyMethod(temp, b);
             else if (fa < 0 && fb > 0) return dichotomyMethod(a, temp);
@@ -47,11 +49,18 @@ public class CubicEquationSolver {
         return a * a - 3 * b;
     }
     
+    private void swap() {
+        double tmp = x1;
+        x1 = x2;
+        x2 = tmp;
+    }
+    
     // количество корней в кубическом уравнении
     private int getRootsAmount(double D) {
         if (D > 0) {
             x1 = (-a + Math.sqrt(D)) / 3;
             x2 = (-a - Math.sqrt(D)) / 3;
+            if (x1 > x2) swap();
             fx1 = f(x1);
             fx2 = f(x2);
             if (fx1 * fx2 < 0) {
@@ -69,8 +78,8 @@ public class CubicEquationSolver {
     private void threeRoots() {
         if (fx1 > epsilon && fx2 < -epsilon) {
             cubic_roots.add(dichotomyMethod(x1, x2));   // (x1, x2)
-            intervalFromX2();                           // (x2, +inf)
-            intervalUpToX1();                           // (-inf, x1)
+            intervalFromX2();
+            intervalUpToX1();
         } else if (Math.abs(fx1) < epsilon && Math.abs(fx2) < epsilon) {
             cubic_roots.add((x2 - x1) / 2);
         } else printError("Что-то пошло не так во время вычислений...");
@@ -94,18 +103,20 @@ public class CubicEquationSolver {
         } else printError("Что-то пошло не так во время вычислений...");
     }
     
+    // (-inf, x1)
     private void intervalUpToX1() {
         double fa;
-        for (int i = 1; i < STOP; i++) {            // (-inf, x1)
+        for (int i = 1; i < STOP; i++) {
             fa = f(x1 - i * STEP);
             if (fa < 0)         { cubic_roots.add(dichotomyMethod(x1 - i * STEP, x1)); break; }
             if (i + 1 == STOP)  { printError("Невозможно взять больший интервал!"); return; }
         }
     }
     
+    // (x2, +inf)
     private void intervalFromX2() {
         double fb;
-        for (int i = 1; i < STOP; i++) {            // (x2, +inf)
+        for (int i = 1; i < STOP; i++) {
             fb = f(x2 + i * STEP);
             if (fb > 0)         { cubic_roots.add(dichotomyMethod(x2, x2 + i * STEP)); break; }
             if (i + 1 == STOP)  { printError("Невозможно взять больший интервал!"); return; }

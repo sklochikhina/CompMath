@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CompMath.iml" filepath="$PROJECT_DIR$/CompMath.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cubic_equation_solving/cubic_equation_solving.iml" filepath="$PROJECT_DIR$/cubic_equation_solving/cubic_equation_solving.iml" />
     </modules>
   </component>
 </project>

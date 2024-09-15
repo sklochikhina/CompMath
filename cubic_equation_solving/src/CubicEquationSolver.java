@@ -33,10 +33,10 @@ public class CubicEquationSolver {
         if (f_temp > 0) {
             if (fa > 0 && fb < 0) return dichotomyMethod(temp, b);
             else if (fa < 0 && fb > 0) return dichotomyMethod(a, temp);
-        } else {
+        } else if (f_temp < 0) {
             if (fa > 0 && fb < 0) return dichotomyMethod(a, temp);
             else if (fa < 0 && fb > 0) return dichotomyMethod(temp, b);
-        }
+        } else return temp;
         return -1;
     }
     

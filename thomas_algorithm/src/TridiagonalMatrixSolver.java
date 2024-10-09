@@ -15,8 +15,8 @@ public class TridiagonalMatrixSolver {
     private double[] alpha;
     private double[] beta;
     
-    public double epsilon;
-    public double gamma;
+    private double epsilon;
+    private double gamma;
     
     TridiagonalMatrixSolver(int N) {
         this.N = N;
@@ -24,7 +24,6 @@ public class TridiagonalMatrixSolver {
     }
     
     private void initArrays() {
-        //A = new double[N][N];
         a = new double[N - 1];
         b = new double[N - 1];
         c = new double[N];
@@ -132,5 +131,13 @@ public class TridiagonalMatrixSolver {
     
     private double countF(int i) {
         return 2 * (i + 1) + gamma;
+    }
+    
+    public void setEpsilon(double epsilon) {
+        this.epsilon = epsilon;
+    }
+    
+    public void setGamma(double gamma) {
+        this.gamma = gamma;
     }
 }

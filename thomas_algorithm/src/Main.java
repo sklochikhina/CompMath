@@ -4,8 +4,8 @@ public class Main {
         
         TridiagonalMatrixSolver solver = new TridiagonalMatrixSolver(5);
         
-        solver.epsilon = 2;
-        solver.gamma = 3;
+        solver.setEpsilon(2);
+        solver.setGamma(3);
         
         solver.solve(1);
     }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CompMath.iml" filepath="$PROJECT_DIR$/CompMath.iml" />
       <module fileurl="file://$PROJECT_DIR$/cubic_equation_solving/cubic_equation_solving.iml" filepath="$PROJECT_DIR$/cubic_equation_solving/cubic_equation_solving.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thomas_algorithm/thomas_algorithm.iml" filepath="$PROJECT_DIR$/thomas_algorithm/thomas_algorithm.iml" />
     </modules>
   </component>
 </project>

@@ -86,7 +86,7 @@ public class TridiagonalMatrixSolver {
     private void printResult() {
         AtomicInteger count = new AtomicInteger(1); // используется для того, чтобы обозначить x1, x2 и т.д.
         System.out.println("Результат:");
-        for (double xi : x) System.out.println("x" + count.getAndIncrement() + " = " + String.format("%.5f", xi));
+        for (double xi : x) System.out.println("x" + count.getAndIncrement() + " = " + String.format("%.8f", xi));
     }
     
     public void solve(int mode) {
@@ -100,7 +100,6 @@ public class TridiagonalMatrixSolver {
         directRun();
         reverseRun();
         
-        Arrays.sort(x);
         printResult();
     }
     
@@ -121,8 +120,8 @@ public class TridiagonalMatrixSolver {
     private void test3Input() {
         Arrays.fill(a, -1);
         Arrays.fill(b, -1);
-        for (int i = 0; i < N; i++) c[i] = countC(i);
-        for (int i = 0; i < N; i++) f[i] = countF(i);
+        for (int i = 0; i < N; i++) c[i] = countC(i + 1);
+        for (int i = 0; i < N; i++) f[i] = countF(i + 1);
     }
     
     private double countC(int i) {

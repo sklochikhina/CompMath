@@ -3,7 +3,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CubicEquationSolver {
     private final int STEP = 1;
-    private final int STOP = 4000;
     //private int iterCounter = 0;
     
     private final double epsilon;
@@ -34,6 +33,7 @@ public class CubicEquationSolver {
         
         double middle = (right + left) / 2;
         
+        int STOP = 4000;
         if (deep >= STOP) return middle;
         
         double f_middle = f(middle);
@@ -138,7 +138,7 @@ public class CubicEquationSolver {
     
     private void printRoots() {
         AtomicInteger count = new AtomicInteger(1); // используется для того, чтобы обозначить x1, x2 и т.д.
-        cubic_roots.forEach((key, value) -> System.out.println("x" + count.getAndIncrement() + " = " + String.format("%.5f", key) + "\tкратность " + value));
+        cubic_roots.forEach((key, value) -> System.out.println("x" + count.getAndIncrement() + " = " + String.format("%.16f", key) + "\tкратность " + value));
     }
     
     private void printError() {

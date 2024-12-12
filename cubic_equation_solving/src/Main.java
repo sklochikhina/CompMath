@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("\nЭта программа решает кубическое уравнения вида x^3 + ax^2 + bx + c = 0\n");
         
-        CubicEquationSolver equation = new CubicEquationSolver(1e-8, -0.998, -7.998, 11.988);
+        CubicEquationSolver equation = new CubicEquationSolver(1e-8, -2.98, -9.08, -5.1);
         equation.solve();
     }
 }

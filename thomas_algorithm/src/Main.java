@@ -2,12 +2,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Эта программа решает систему СЛАУ методом прогонки (методом Томаса).");
         
-        TridiagonalMatrixSolver solver = new TridiagonalMatrixSolver(5);
+        TridiagonalMatrixSolver solver = new TridiagonalMatrixSolver(2);
         
-        solver.setEpsilon(2);
+        solver.setEpsilon(1e-6);
         solver.setGamma(3);
         
-        solver.solve(1);
+        solver.solve(0);
     }
 }
 

@@ -69,7 +69,7 @@ public class Main {
         double a = BEGIN; // Начало отрезка
         double b = END; // Конец отрезка
 
-        int N = 80;
+        int N = 100;
 
         double result_trap = 0;
         double result_parab = 0;

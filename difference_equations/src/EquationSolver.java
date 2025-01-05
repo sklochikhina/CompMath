@@ -100,11 +100,24 @@ public class EquationSolver {
         }
     }
 
-    public void solve_compact_diff_scheme_4nd_order() {
-        y_h1.add(countSecondElem(y_h1.getFirst(), h1));
-        y_h2.add(countSecondElem(y_h2.getFirst(), h2));
-        y_h3.add(countSecondElem(y_h3.getFirst(), h3));
-
+    public void solve_compact_diff_scheme_4nd_order(Mode mode) {
+        switch (mode) {
+            case A -> {
+                y_h1.add(y_h1.getFirst() * (1 + h1 * Math.cos(a)));
+                y_h2.add(y_h2.getFirst() * (1 + h2 * Math.cos(a)));
+                y_h3.add(y_h3.getFirst() * (1 + h3 * Math.cos(a)));
+            }
+            case B -> {
+                y_h1.add(y_h1.getFirst() * (2 + h1 * Math.cos(a)) / (2 - h1 * Math.cos(a + h1)));
+                y_h2.add(y_h2.getFirst() * (2 + h2 * Math.cos(a)) / (2 - h2 * Math.cos(a + h2)));
+                y_h3.add(y_h3.getFirst() * (2 + h3 * Math.cos(a)) / (2 - h3 * Math.cos(a + h3)));
+            }
+            case C -> {
+                y_h1.add(countSecondElem(y_h1.getFirst(), h1));
+                y_h2.add(countSecondElem(y_h2.getFirst(), h2));
+                y_h3.add(countSecondElem(y_h3.getFirst(), h3));
+            }
+        }
         countRest(y_h1, h1, size_h1);
         countRest(y_h2, h2, size_h2);
         countRest(y_h3, h3, size_h3);
@@ -165,5 +178,9 @@ public class EquationSolver {
         frame.setSize(1000, 800);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public enum Mode {
+        A, B, C
     }
 }
